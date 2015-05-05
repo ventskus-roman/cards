@@ -16,7 +16,7 @@
  * to create a new
  * file per style scope.
  *
+ *= require bootstrap.min
  *= require_tree .
  *= require_self
- *= require bootstrap.min
  */
