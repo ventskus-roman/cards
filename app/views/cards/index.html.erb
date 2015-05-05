@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Текст</th>
+      <th>Перевод</th>
+      <th>Дата просмотра</th>
+    </tr>
+  </thead>
+<% @cards.each do |card| %>
+  <tr>
+    <td><%= card.original_text %></td>
+    <td><%= card.translated_text %></td>
+    <td><%= card.review_date %></td>
+  </tr>
+<% end %>
+</table>
