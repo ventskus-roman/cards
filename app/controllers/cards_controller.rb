@@ -13,7 +13,7 @@ class CardsController < ApplicationController
     if @card.save
       redirect_to :cards
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -33,11 +33,12 @@ class CardsController < ApplicationController
     if @card.update(card_params)
       redirect_to :cards
     else
-      render 'edit'
+      render "edit"
     end
   end
 
   private
+
     def card_params
       params.require(:card).permit(:original_text, :translated_text)
     end
