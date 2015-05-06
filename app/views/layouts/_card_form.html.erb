@@ -1,0 +1,9 @@
+<%= form_for(@card) do |f| %>
+  <%= f.label :original_text, "Текст" %>
+  <%= f.text_field :original_text, class: 'form-control' %>
+
+  <%= f.label "Перевод" %>
+  <%= f.text_field :translated_text, class: 'form-control' %>
+
+  <%= f.submit "Сохранить", class: 'btn btn-default' %>
+<% end -%>
