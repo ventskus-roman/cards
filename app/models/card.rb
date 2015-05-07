@@ -1,7 +1,10 @@
 class Card < ActiveRecord::Base
   validates :original_text, :translated_text, :review_date, presence: true
   validate :check_original_and_translated_not_equals
-  before_validation :update_review_date
+
+  before_validation(on: :create) do
+    self.review_date = 3.days.from_now
+  end
 
   def check_original_and_translated_not_equals
     if original_text.downcase == translated_text.downcase
@@ -10,9 +13,5 @@ class Card < ActiveRecord::Base
   end
 
   private
-
-  def update_review_date
-    self.review_date = 3.days.from_now
-  end
 
 end
