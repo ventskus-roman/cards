@@ -12,6 +12,4 @@ class Card < ActiveRecord::Base
     end
   end
 
-  private
-
 end
