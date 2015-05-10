@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root "cards#show_random_card"
   resources :cards
+  patch "cards/:id/check", to: "cards#check", as: "check_card"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

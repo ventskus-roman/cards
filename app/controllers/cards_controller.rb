@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :find_card, only: [:edit, :update, :destroy]
+  before_action :find_card, only: [:edit, :update, :destroy, :check]
 
   def index
     @cards = Card.all
@@ -35,17 +35,25 @@ class CardsController < ApplicationController
   end
 
   def show_random_card
+    @card = Card.random_need_to_review
     render 'random_card'
   end
 
-  def check_card_translate
-
+  def check
+    if @card.original_text == params[:card_translate][:original_text]
+      flash[:notice] = "Правильно"
+      @card.update_review_date
+      redirect_to root_path
+    else
+      flash.now[:error] = "Не правильно"
+      render 'random_card'
+    end
   end
 
   private
 
     def card_params
-      params.require(:card).permit(:original_text, :translated_text)
+      params.require(:card).permit(:original_text, :translated_text, :id)
     end
 
   private
