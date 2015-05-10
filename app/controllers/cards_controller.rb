@@ -34,6 +34,14 @@ class CardsController < ApplicationController
     end
   end
 
+  def show_random_card
+    render 'random_card'
+  end
+
+  def check_card_translate
+
+  end
+
   private
 
     def card_params

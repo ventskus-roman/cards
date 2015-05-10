@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "home#index"
+  root "cards#show_random_card"
   resources :cards
 
   # The priority is based upon order of creation: first created -> highest priority.
