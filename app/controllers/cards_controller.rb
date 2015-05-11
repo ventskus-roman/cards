@@ -46,9 +46,9 @@ class CardsController < ApplicationController
 
   private
 
-    def card_params
-      params.require(:card).permit(:original_text, :translated_text)
-    end
+  def card_params
+    params.require(:card).permit(:original_text, :translated_text)
+  end
 
   private
 
@@ -57,8 +57,9 @@ class CardsController < ApplicationController
   end
 
   private
-    def check_card_params
-      params.require(:card_translation).permit(:original_text)
-    end
+
+  def check_card_params
+    params.require(:card_translation).permit(:original_text)
+  end
 
 end
