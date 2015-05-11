@@ -35,9 +35,8 @@ class CardsController < ApplicationController
   end
 
   def check
-    if @card.check_original_text(check_card_params[:original_text])
+    if @card.check_translation(check_card_params[:original_text])
       flash[:notice] = "Правильно"
-      @card.update_review_date
       redirect_to root_path
     else
       flash.now[:error] = "Не правильно"
@@ -59,7 +58,7 @@ class CardsController < ApplicationController
 
   private
     def check_card_params
-      params.require(:card_translate).permit(:original_text)
+      params.require(:card_translation).permit(:original_text)
     end
 
 end

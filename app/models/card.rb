@@ -4,8 +4,7 @@ class Card < ActiveRecord::Base
 
   before_validation :set_default_review_date, :strip_whitespaces, on: :create
 
-  scope :need_to_review, -> { where("review_date <= ?", Time.zone.now )
-                              .order("RANDOM()")}
+  scope :need_to_review, -> { where("review_date <= ?", Time.zone.now ).order("RANDOM()")}
 
   def check_original_and_translated_not_equals
     if original_text.mb_chars.downcase == translated_text.mb_chars.downcase
@@ -13,8 +12,10 @@ class Card < ActiveRecord::Base
     end
   end
 
-  def check_original_text(text)
-    original_text.mb_chars.downcase.strip == text.mb_chars.downcase.strip
+  def check_translation(text)
+    if original_text.mb_chars.downcase.strip == text.mb_chars.downcase.strip
+      update_review_date
+    end
   end
 
   def update_review_date
@@ -25,14 +26,14 @@ class Card < ActiveRecord::Base
   private
 
   def strip_whitespaces
-    self.original_text = self.original_text.strip
-    self.translated_text = self.translated_text.strip
+    original_text = original_text.strip
+    translated_text = translated_text.strip
   end
 
   private
 
   def set_default_review_date
-    self.review_date = 3.days.from_now
+    review_date = 3.days.from_now
   end
 
 end
