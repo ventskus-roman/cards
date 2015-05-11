@@ -23,14 +23,16 @@ class Card < ActiveRecord::Base
   end
 
   private
-    def strip_whitespaces
-      self.original_text = self.original_text.strip
-      self.translated_text = self.translated_text.strip
-    end
+
+  def strip_whitespaces
+    self.original_text = self.original_text.strip
+    self.translated_text = self.translated_text.strip
+  end
 
   private
-    def set_default_review_date
-      self.review_date = 3.days.from_now
-    end
+
+  def set_default_review_date
+    self.review_date = 3.days.from_now
+  end
 
 end
