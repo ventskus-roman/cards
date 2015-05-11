@@ -61,5 +61,4 @@ class CardsController < ApplicationController
   def check_card_params
     params.require(:card_translation).permit(:original_text)
   end
-
 end
