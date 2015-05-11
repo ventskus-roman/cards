@@ -1,0 +1,9 @@
+<% if @card %>
+  <h2><%= @card.translated_text %></h2>
+  <%= simple_form_for :card_translate, url: check_card_path(@card), method: 'patch', id: @card.id do |f| %>
+    <%= f.input :original_text, label: "Перевод" %>
+    <%= f.submit "Проверить" %>
+  <% end -%>
+<% else %>
+  <span>Нет карточек для пересмотра</span>
+<% end %>

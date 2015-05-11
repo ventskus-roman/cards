@@ -4,9 +4,8 @@ class Card < ActiveRecord::Base
 
   before_validation :set_default_review_date, :strip_whitespaces, on: :create
 
-  scope :random, -> { order("RANDOM()") }
   scope :need_to_review, -> { where("review_date <= ?", Time.zone.now )
-                              .select(:id, :translated_text)}
+                              .select(:id, :translated_text).order("RANDOM()")}
 
   def check_original_and_translated_not_equals
     if original_text.mb_chars.downcase == translated_text.mb_chars.downcase
@@ -15,8 +14,8 @@ class Card < ActiveRecord::Base
   end
 
   def self.random_need_to_review
-    random_card = need_to_review.random
-    if (random.empty?)
+    random_card = need_to_review
+    if (random_card.empty?)
       nil
     else
       random_card.first
