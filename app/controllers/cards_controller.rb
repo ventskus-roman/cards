@@ -34,11 +34,6 @@ class CardsController < ApplicationController
     end
   end
 
-  def show_random_card
-    @card = Card.random_need_to_review
-    render 'random_card'
-  end
-
   def check
     if @card.original_text == params[:card_translate][:original_text]
       flash[:notice] = "Правильно"
@@ -46,7 +41,7 @@ class CardsController < ApplicationController
       redirect_to root_path
     else
       flash.now[:error] = "Не правильно"
-      render 'random_card'
+      render 'home/random_card'
     end
   end
 

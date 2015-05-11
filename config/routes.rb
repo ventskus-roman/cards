@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  root "cards#show_random_card"
-  resources :cards
-  patch "cards/:id/check", to: "cards#check", as: "check_card"
+  root "home#index"
+  resources :cards do
+    patch "check", on: :member
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
