@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @card = Card.random_need_to_review
+    @card = Card.need_to_review.first
     render 'random_card'
   end
 end
